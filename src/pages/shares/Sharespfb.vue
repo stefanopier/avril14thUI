@@ -24,10 +24,6 @@ export default {
   methods: {
     getShares() {
       const transactionsStore = useTransactionsStore()
-
-      
-console.log('************************STORE', transactionsStore)
-
       if (this.isLoading) {
         this.errorMessage = `Waiting for previous request...`
         this.$refs.errorMessage.style.display = "block"
