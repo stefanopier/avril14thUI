@@ -1,0 +1,54 @@
+<section class="default-section section-bg">
+  <div class="container">
+    <div class="row justify-content-between gy-4">
+
+      <div class="col-lg-6 d-flex align-items-center">
+        <div class="content">
+          <h3>Submit a PFB transaction</h3>
+          <p>PFB is a PayForBlob Message.</p>
+          <p> ID should be 8 bytes, use the generator to get a random value.<br>
+            Data is in hex-encoded bytes of the raw message, use the generator to get a random value.<br>
+            Gas Limit is the limit of gas to use for the transaction</p>
+            <p>See <a href="https://docs.celestia.org/developers/node-tutorial/#submit-a-pfb-transaction" target="_blank" rel="nopener noreferrer">Celestia Docs</a></p>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <form class="generic-form" @submit.prevent="submitTransaction">
+          <div class="row gy-3">
+            <div class="col-md-12">
+              <label for="gateway">Gateway</label>
+              <input type="text" id="gateway" v-model="gateway" class="form-control" placeholder="http://bridge-blockspacerace.avril14th.org" required>
+              <label for="gateway">Port</label>
+              <input type="text" id="port" v-model="port" class="form-control" placeholder="26659" required>
+            </div>
+            <div class="col-md-12">
+              <label for="namespaceId">Namespace Id</label>
+              <input type="text" id="namespaceId" v-model="rndNamespace" class="form-control" placeholder="0c204d39600fddd3" required>
+              <button ref="genNmspButton" @click="generateRndNamespace" type="button">Generate</button>
+            </div>
+            <div class="col-md-12 ">
+              <label for="txData">Data</label>
+              <input type="text" id="txData" v-model="rndTxData" class="form-control" placeholder="f1f20ca8007e910a3bf8b2e61da0f26bca07ef78717a6ea54165f5" required>
+              <button ref="genTxDataButton" @click="generateRndTxData" type="button">Generate</button>
+            </div>
+            <div class="col-md-12">
+              <label for="gasLimit">Gas Limit</label>
+              <input type="number" id="gasLimit" v-model="gasLimit" class="form-control" placeholder=80000 required>
+            </div>
+            <div class="col-md-12">
+              <label for="gasFee">Gas Fee</label>
+              <input type="number" id="gasFee" v-model="gasFee" class="form-control" placeholder=2000 required>
+            </div>
+            <div class="col-md-12 text-center">
+              <div ref="loading" class="loading">Loading</div>
+              <div ref="errorMessage" class="error-message">{{ errorMessage }}</div>
+              <div ref="responseMessage" class="response-message">{{ responseMessage }}</div>
+              <button ref="checkButton" @click="submitTransaction" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

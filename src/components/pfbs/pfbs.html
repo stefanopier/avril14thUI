@@ -1,0 +1,40 @@
+<section class="transactions section-bg">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>PFB transactions</h2>
+    </div>
+
+    <div class="row gy-4">
+      <div v-for="tr in transactionsStore.transactions" class="col-lg-4 col-md-6">
+
+        <div v-if="tr !== null" class="transaction-item  position-relative">
+          <h5>Hash {{ tr.data.txhash }}</h5>
+          <p v-if="tr.namespaceId !== null"><strong>Submitted namespace Id</strong> {{ tr.namespaceId }}</p>
+          <p v-if="tr.shares !== null"><strong>Shares</strong> {{ tr.shares }}</p>
+          <p><strong>Timestamp</strong> {{ tr.header.timestamp }}</p>
+          <p><strong>Chain</strong> {{ tr.header.chain_id }}</p>
+          <p><strong>Block</strong> {{ tr.header.block_id }}</p>
+          <p><strong>Height</strong> {{ tr.data.height }}</p>
+          <p><strong>Gas wanted</strong> {{ tr.data.gas_wanted }}</p>
+          <p><strong>Gas used</strong> {{ tr.data.gas_used }}</p>
+          <p><strong>Codespace</strong> {{ tr.data.codespace }}</p>
+          <p><strong>Code</strong> {{ tr.data.code }}</p>
+          <p><strong>Data</strong> {{ tr.data.data }}</p>
+          <div><strong>Logs</strong>
+            <ul v-for="lg in tr.data.logs">
+              <li><strong>Message index</strong> {{ lg.msg_index }}</li>
+              <li><strong> Events</strong></li>
+              <ul v-for="log_event in lg.events">
+                <li><strong>{{ log_event.type }}</strong></li>
+                <ul v-for="log_event_attribute in log_event.attributes">
+                  <li>{{ log_event_attribute.key }} : {{ log_event_attribute.value }}</li>
+                </ul>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

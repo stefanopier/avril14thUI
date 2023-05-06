@@ -1,0 +1,42 @@
+<section class="default-section section-bg">
+  <div class="container">
+    <div class="row justify-content-between gy-4">
+
+      <div class="col-lg-6 d-flex align-items-center" >
+        <div class="content">
+          <h3>Get namespaced shares</h3>
+          <p>Use that block height and the namespace ID with which you submitted the PFB transaction to get your message shares returned to you.</p>
+          <p>See <a href="https://docs.celestia.org/developers/node-tutorial/#get-namespaced-shares-by-block-height" target="_blank" rel="nopener noreferrer">Celestia Docs</a></p>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <form class="generic-form" @submit.prevent="getShares">
+          <div class="row gy-3">
+            <div class="col-md-12">
+              <div class="col-md-12">
+                <label for="gateway">Gateway</label>
+                <input type="text" id="gateway" v-model="gateway" class="form-control" placeholder="http://bridge-blockspacerace.avril14th.org" required>
+                <label for="gateway">Port</label>
+                <input type="text" id="port" v-model="port" class="form-control" placeholder="26659" required>
+              </div>  
+              <label for="namespaceId">Namespace Id</label>
+              <input type="text" id="namespaceId" v-model="namespace" class="form-control" placeholder="0c204d39600fddd3" required>
+            </div>
+            <div class="col-md-12">
+              <label for="namespaceId">Height</label>
+              <input type="text" id="namespaceId" v-model="height" class="form-control" placeholder="4999" required>
+            </div>
+            <div class="col-md-12 text-center">
+              <div ref="loading" class="loading">Loading</div>
+              <div ref="errorMessage" class="error-message">{{ errorMessage }}</div>
+              <div ref="responseMessage" class="response-message">{{ responseMessage }}</div>
+              <button ref="checkButton" @click="getShares" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+  

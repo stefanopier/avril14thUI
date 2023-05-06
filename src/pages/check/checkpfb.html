@@ -1,0 +1,32 @@
+<section class="default-section section-bg">
+  <div class="container">
+    <div class="row justify-content-between gy-4">
+
+      <div class="col-lg-6 d-flex align-items-center" >
+        <div class="content">
+          <h3>Check a transaction</h3>
+          <p>Check the transaction using <a href="https://hub.mintscan.io/chains/overview" target="_blank" rel="nopener noreferrer">Mintscan</a></p>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <form class="generic-form" @submit.prevent="checkTransaction">
+          <div class="row gy-3">
+            <div class="col-md-12">
+              <input type="text"  v-model.trim="txHash" id="txHash" class="form-control" placeholder="B31DEA16E1F3EE13895D4A70FE808801E8BCF8381AACD5071CB51E929F17AB65" required>
+            </div>
+            <div class="col-md-12 text-center">
+              <div ref="loading" class="loading">Loading</div>
+              <div ref="errorMessage" class="error-message">{{ errorMessage }}</div>
+              <div ref="responseMessage" class="response-message">{{ responseMessage }}</div>
+              <button ref="checkButton" @click="checkTransaction" type="submit">Check</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Pfbs />
+  

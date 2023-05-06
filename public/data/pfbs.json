@@ -1,0 +1,172 @@
+{
+  "pfbs": [
+    {
+      "height": 239113,
+      "txhash": "12D768B15FB14A82C7C14E48EDBEFB8077F399E9B40618F5EF79A0EE26D43785",
+      "data": "122A0A282F63656C65737469612E626C6F622E76312E4D7367506179466F72426C6F6273526573706F6E7365",
+      "raw_log": "[{\"msg_index\":0,\"events\":[{\"type\":\"celestia.blob.v1.EventPayForBlobs\",\"attributes\":[{\"key\":\"blob_sizes\",\"value\":\"[35]\"},{\"key\":\"namespace_ids\",\"value\":\"[\\\"6Xs1lJ196Rk=\\\"]\"},{\"key\":\"signer\",\"value\":\"\\\"celestia1vdjkcetnw35kzvtpvv6hvarjxcuxuam9x4c8wumcwa4kvumgx3kr2wrsvamkv6mgxdmk5ure8pcq9awnja\\\"\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/celestia.blob.v1.MsgPayForBlobs\"}]}]}]",
+      "logs": [
+          {
+              "msg_index": 0,
+              "events": [
+                  {
+                      "type": "celestia.blob.v1.EventPayForBlobs",
+                      "attributes": [
+                          {
+                              "key": "blob_sizes",
+                              "value": "[35]"
+                          },
+                          {
+                              "key": "namespace_ids",
+                              "value": "[\"6Xs1lJ196Rk=\"]"
+                          },
+                          {
+                              "key": "signer",
+                              "value": "\"celestia1vdjkcetnw35kzvtpvv6hvarjxcuxuam9x4c8wumcwa4kvumgx3kr2wrsvamkv6mgxdmk5ure8pcq9awnja\""
+                          }
+                      ]
+                  },
+                  {
+                      "type": "message",
+                      "attributes": [
+                          {
+                              "key": "action",
+                              "value": "/celestia.blob.v1.MsgPayForBlobs"
+                          }
+                      ]
+                  }
+              ]
+          }
+      ],
+      "gas_wanted": 80000,
+      "gas_used": 73487,
+      "events": [
+          {
+              "type": "coin_spent",
+              "attributes": [
+                  {
+                      "key": "c3BlbmRlcg==",
+                      "value": "Y2VsZXN0aWExYWM1dnRyNjhud2U1cHdzeHdrZnNoNGw1OHBnd2ZraDN3anB5OHA=",
+                      "index": true
+                  },
+                  {
+                      "key": "YW1vdW50",
+                      "value": "MjAwMHV0aWE=",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "coin_received",
+              "attributes": [
+                  {
+                      "key": "cmVjZWl2ZXI=",
+                      "value": "Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=",
+                      "index": true
+                  },
+                  {
+                      "key": "YW1vdW50",
+                      "value": "MjAwMHV0aWE=",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "transfer",
+              "attributes": [
+                  {
+                      "key": "cmVjaXBpZW50",
+                      "value": "Y2VsZXN0aWExN3hwZnZha20yYW1nOTYyeWxzNmY4NHoza2VsbDhjNWxwbmpzM3M=",
+                      "index": true
+                  },
+                  {
+                      "key": "c2VuZGVy",
+                      "value": "Y2VsZXN0aWExYWM1dnRyNjhud2U1cHdzeHdrZnNoNGw1OHBnd2ZraDN3anB5OHA=",
+                      "index": true
+                  },
+                  {
+                      "key": "YW1vdW50",
+                      "value": "MjAwMHV0aWE=",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "message",
+              "attributes": [
+                  {
+                      "key": "c2VuZGVy",
+                      "value": "Y2VsZXN0aWExYWM1dnRyNjhud2U1cHdzeHdrZnNoNGw1OHBnd2ZraDN3anB5OHA=",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "tx",
+              "attributes": [
+                  {
+                      "key": "ZmVl",
+                      "value": "MjAwMHV0aWE=",
+                      "index": true
+                  },
+                  {
+                      "key": "ZmVlX3BheWVy",
+                      "value": "Y2VsZXN0aWExYWM1dnRyNjhud2U1cHdzeHdrZnNoNGw1OHBnd2ZraDN3anB5OHA=",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "tx",
+              "attributes": [
+                  {
+                      "key": "YWNjX3NlcQ==",
+                      "value": "Y2VsZXN0aWExYWM1dnRyNjhud2U1cHdzeHdrZnNoNGw1OHBnd2ZraDN3anB5OHAvMA==",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "tx",
+              "attributes": [
+                  {
+                      "key": "c2lnbmF0dXJl",
+                      "value": "SFlhK2NxSnllSXAzcFZqT3RBbVMrY3pPZlBydEJwd1djcVRwbVo3T1N2bEJyaUhxeDMrRmpROWxvVzRrL3RsS0t6VXR5TVRvQzlYWlBxMmRoa1JVZFE9PQ==",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "message",
+              "attributes": [
+                  {
+                      "key": "YWN0aW9u",
+                      "value": "L2NlbGVzdGlhLmJsb2IudjEuTXNnUGF5Rm9yQmxvYnM=",
+                      "index": true
+                  }
+              ]
+          },
+          {
+              "type": "celestia.blob.v1.EventPayForBlobs",
+              "attributes": [
+                  {
+                      "key": "YmxvYl9zaXplcw==",
+                      "value": "WzM1XQ==",
+                      "index": true
+                  },
+                  {
+                      "key": "bmFtZXNwYWNlX2lkcw==",
+                      "value": "WyI2WHMxbEoxOTZSaz0iXQ==",
+                      "index": true
+                  },
+                  {
+                      "key": "c2lnbmVy",
+                      "value": "ImNlbGVzdGlhMXZkamtjZXRudzM1a3p2dHB2djZodmFyanhjdXh1YW05eDRjOHd1bWN3YTRrdnVtZ3gza3Iyd3JzdmFta3Y2bWd4ZG1rNXVyZThwY3E5YXduamEi",
+                      "index": true
+                  }
+              ]
+          }
+      ]
+    }
+  ]
+}
