@@ -25,7 +25,7 @@ export default {
     getShares() {
       const transactionsStore = useTransactionsStore()
       if (this.isLoading) {
-        this.errorMessage = `Waiting for previous request...`
+        this.errorMessage = `Waiting ...`
         this.$refs.errorMessage.style.display = "block"
         this.$refs.loading.style.display = "none"
         return
@@ -37,12 +37,6 @@ export default {
       this.$refs.loading.style.display = "block"
       this.$refs.responseMessage.style.display = "none"
       
-      /**
-       * TODO
-       * check for CORS on celestia-node gateway server
-       * https://github.com/celestiaorg/celestia-node/blob/929a334e90b0a81e890a113beccb43caa2dee485/api/gateway/server.go#L88
-       * https://www.stackhawk.com/blog/golang-cors-guide-what-it-is-and-how-to-enable-it/
-       */
       fetch(`${this.gateway}:${this.port}/namespaced_shares/${this.namespace}/height/${this.height}`)
       .then( res => {
         if (res.status >= 400) {

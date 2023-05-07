@@ -28,7 +28,7 @@ export default {
     checkTransaction() {
       const transactionsStore = useTransactionsStore()
       if (this.isLoading) {
-        this.errorMessage = `Waiting for previous request...`
+        this.errorMessage = `Waiting ...`
         this.$refs.errorMessage.style.display = "block"
         this.$refs.loading.style.display = "none"
         return

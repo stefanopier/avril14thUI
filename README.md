@@ -26,7 +26,4 @@ npm run preview
 ```
 
 ### TODOS
-Check for CORS on celestia-node gateway server: submit and check against a bridge node URL is blocked by CORS   
-*(Reason: CORS header ‘Access-Control-Allow-Origin’ missing). Status code: 405*
-* https://github.com/celestiaorg/celestia-node/blob/929a334e90b0a81e890a113beccb43caa2dee485/api/gateway/server.go#L88
-* https://www.stackhawk.com/blog/golang-cors-guide-what-it-is-and-how-to-enable-it/
+Deploy an API proxy server to avoid CORS origin errors
