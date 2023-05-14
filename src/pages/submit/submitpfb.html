@@ -6,8 +6,8 @@
         <div class="content">
           <h3>Submit a PFB transaction</h3>
           <p>PFB is a PayForBlob Message.</p>
-          <p> ID should be 8 bytes, use the generator to get a random value.<br>
-            Data is in hex-encoded bytes of the raw message, use the generator to get a random value.<br>
+          <p> ID should be 8 bytes, use the generator button to get a random value.<br>
+            Data is in hex-encoded bytes of the raw message, use the generator button to get a random value.<br>
             Gas Limit is the limit of gas to use for the transaction</p>
             <p>See <a href="https://docs.celestia.org/developers/node-tutorial/#submit-a-pfb-transaction" target="_blank" rel="nopener noreferrer">Celestia Docs</a></p>
         </div>
@@ -40,11 +40,18 @@
               <label for="gasFee">Gas Fee</label>
               <input type="number" id="gasFee" v-model="gasFee" class="form-control" placeholder=2000 required>
             </div>
+            <!--
+            <div class="col-md-12">
+              <label for="walletAddr">Wallet address</label>
+              <input type="text" id="walletAddr" v-model="walletAddr" class="form-control" placeholder="test address value">
+            </div>
+          -->
+
             <div class="col-md-12 text-center">
               <div ref="loading" class="loading">Loading</div>
               <div ref="errorMessage" class="error-message">{{ errorMessage }}</div>
               <div ref="responseMessage" class="response-message">{{ responseMessage }}</div>
-              <button ref="checkButton" @click="submitTransaction" type="submit">Submit</button>
+              <button ref="checkButton" @click="submitTransaction" type="submit" :disabled="isLoading">Submit</button>
             </div>
           </div>
         </form>
@@ -52,3 +59,5 @@
     </div>
   </div>
 </section>
+
+<Pfbs />

@@ -8,28 +8,39 @@
     <div class="row gy-4">
       <div v-for="tr in transactionsStore.transactions" class="col-lg-4 col-md-6">
 
-        <div v-if="tr !== null" class="transaction-item  position-relative">
-          <h5>Hash {{ tr.data.txhash }}</h5>
-          <p v-if="tr.namespaceId !== null"><strong>Submitted namespace Id</strong> {{ tr.namespaceId }}</p>
-          <p v-if="tr.shares !== null"><strong>Shares</strong> {{ tr.shares }}</p>
-          <p><strong>Timestamp</strong> {{ tr.header.timestamp }}</p>
-          <p><strong>Chain</strong> {{ tr.header.chain_id }}</p>
-          <p><strong>Block</strong> {{ tr.header.block_id }}</p>
-          <p><strong>Height</strong> {{ tr.data.height }}</p>
-          <p><strong>Gas wanted</strong> {{ tr.data.gas_wanted }}</p>
-          <p><strong>Gas used</strong> {{ tr.data.gas_used }}</p>
-          <p><strong>Codespace</strong> {{ tr.data.codespace }}</p>
-          <p><strong>Code</strong> {{ tr.data.code }}</p>
-          <p><strong>Data</strong> {{ tr.data.data }}</p>
-          <div><strong>Logs</strong>
-            <ul v-for="lg in tr.data.logs">
-              <li><strong>Message index</strong> {{ lg.msg_index }}</li>
-              <li><strong> Events</strong></li>
+        <div v-if="tr" class="transaction-item  position-relative">
+          <div>
+            <h5>Hash</h5>
+            <p v-if="tr.txhash"><strong> {{ tr.txhash }}</strong></p>
+            <p>List of stored transactions</p>
+          </div>
+          <p v-if="tr.namespaceId"><strong>Namespace Id</strong> {{ tr.namespaceId }}</p>
+          <p v-if="tr.shares"><strong>Shares</strong> {{ tr.shares }}</p>
+          <p v-if="tr.scan && tr.scan.timestamp"><strong>Timestamp</strong> {{ tr.scan.timestamp }}</p>
+          <p v-if="tr.scan && tr.scan.chain_id"><strong>Chain ID</strong> {{ tr.scan.chain_id }}</p>
+          <p v-if="tr.scan && tr.scan.block_id"><strong>Block ID</strong> {{ tr.scan.block_id }}</p>
+          <p v-if="tr.height"><strong>Height</strong> {{ tr.height }}</p>
+          <p v-if="tr.gas_wanted"><strong>Gas wanted</strong> {{ tr.gas_wanted }}</p>
+          <p v-if="tr.gas_used"><strong>Gas used</strong> {{ tr.gas_used }}</p>
+          <p v-if="tr.scan && tr.scan.codespace"><strong>Codespace</strong> {{ tr.scan.codespace }}</p>
+          <p v-if="tr.data"><strong>Data</strong> {{ tr.data }}</p>
+          <div v-if="tr.logs"><strong>Logs</strong>
+            <ul v-for="lg in tr.logs">
+              <li>Message index: {{ lg.msg_index }}</li>
+              <li>Events</li>
               <ul v-for="log_event in lg.events">
                 <li><strong>{{ log_event.type }}</strong></li>
                 <ul v-for="log_event_attribute in log_event.attributes">
-                  <li>{{ log_event_attribute.key }} : {{ log_event_attribute.value }}</li>
+                  <li>{{ log_event_attribute.key }}: {{ log_event_attribute.value }}</li>
                 </ul>
+              </ul>
+            </ul>
+          </div>
+          <div v-if="tr.events"><strong>Events</strong>
+            <ul v-for="ev in tr.events">
+              <li v-if="ev.type">Event type: {{ ev.type }}</li>
+              <ul v-for="event_attribute in ev.attributes">
+                <li>{{ event_attribute.key }} : {{ event_attribute.value }}</li>
               </ul>
             </ul>
           </div>

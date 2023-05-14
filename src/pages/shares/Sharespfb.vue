@@ -1,4 +1,5 @@
 <script setup>
+import Pfbs from '../../components/pfbs/Pfbs.vue'
 import { useTransactionsStore } from '../../store/transactions'
 const transactionsStore = useTransactionsStore()
 </script>
@@ -7,6 +8,10 @@ const transactionsStore = useTransactionsStore()
 
 <script>
 export default {
+  components: {
+    Pfbs
+  },
+
   data() {
     return {
       gateway: 'http://bridge-blockspacerace.avril14th.org',
@@ -14,20 +19,20 @@ export default {
       namespace: '',
       height: '',
       isLoading: false,
-      isError: false,
-      isSubmitted: false,
       errorMessage: '',
       responseMessage: '',
-    };
+    }
   },
 
   methods: {
     getShares() {
+      if (!this.gateway || !this.port || !this.namespace || !this.height) {
+        return true
+      }
+
       const transactionsStore = useTransactionsStore()
       if (this.isLoading) {
-        this.errorMessage = `Waiting ...`
-        this.$refs.errorMessage.style.display = "block"
-        this.$refs.loading.style.display = "none"
+        this.$refs.loading.style.display = "block"
         return
       }
 
@@ -37,45 +42,66 @@ export default {
       this.$refs.loading.style.display = "block"
       this.$refs.responseMessage.style.display = "none"
       
-      fetch(`${this.gateway}:${this.port}/namespaced_shares/${this.namespace}/height/${this.height}`)
+      fetch(`https://www.avril14th.org/check_shares?gateway=${this.gateway}&port=${this.port}&namespaced_shares=${this.namespace}&height=${this.height}`)
       .then( res => {
         if (res.status >= 400) {
           this.isLoading = false
-          this.isError = true
-          this.errorMessage = `Unable to send the request, error ${res.status} ${res.statusText}`
+          this.errorMessage = 'Unable to send the request'
           this.$refs.errorMessage.style.display = "block"
           this.$refs.loading.style.display = "none"
-          throw new Error(res);
+          throw new Error(res)
         } else if (res.status === 500) {
           this.isLoading = false
-          this.isError = true
           this.errorMessage = 'Unable to contact server'
           this.$refs.errorMessage.style.display = "block"
           this.$refs.loading.style.display = "none"
-          throw new Error('Unable to contact server');
+          throw new Error('Unable to contact server')
         } else if (!res.ok) {
           this.errorMessage = 'HTTP error'
           this.$refs.errorMessage.style.display = "block"
           this.$refs.loading.style.display = "none"
-          throw new Error(`HTTP error! status: ${res.status}`);
+          throw new Error(`HTTP error! status: ${res.status}`)
         } else {
           return res.json()
         }
       })
       .then((resJson) => {
-        transactionsStore.addShares(this.namespace, resJson.shares)
-        this.isLoading = false
-        this.isSubmitted = true
-        this.errorMessage = ''
-        this.responseMessage = 'Ok'
-        this.$refs.loading.style.display = "none"
-        this.$refs.errorMessage.style.display = "none"
-        this.$refs.responseMessage.style.display = "block"
+        if (!resJson.proxyError) {
+          if(resJson.height && resJson.height > 0) {
+              transactionsStore.addShares(this.namespace, resJson.height, resJson.shares)
+              this.isLoading = false
+              this.errorMessage = ''
+              this.responseMessage = 'Ok'
+              this.$refs.loading.style.display = "none"
+              this.$refs.errorMessage.style.display = "none"
+              this.$refs.responseMessage.style.display = "block"
+              setTimeout(() => {
+                this.$refs.responseMessage.style.display = "none"
+              }, 5000)
+            } else {
+            this.errorMessage = 'Submit request error'
+            this.$refs.errorMessage.style.display = "block"
+            this.$refs.loading.style.display = "none"
+            throw new Error(JSON.stringify(resJson))
+          }
+        } else {
+          this.errorMessage = 'Submit request error'
+          this.$refs.errorMessage.style.display = "block"
+          this.$refs.loading.style.display = "none"
+          throw new Error(JSON.stringify(resJson))
+        }
       })
       .catch(error => {
-        console.log('Error', error.message);
+        console.log('Error', error.message)
+        setTimeout(() => {
+          this.isLoading = false
+          this.errorMessage = ''
+          this.$refs.loading.style.display = "none"
+          this.$refs.errorMessage.style.display = "none"
+          this.$refs.responseMessage.style.display = "none"
+        }, 5000)
       })
     }
   }
-};
+}
 </script>

@@ -5,7 +5,7 @@
       <div class="col-lg-6 d-flex align-items-center" >
         <div class="content">
           <h3>Get namespaced shares</h3>
-          <p>Use that block height and the namespace ID with which you submitted the PFB transaction to get your message shares returned to you.</p>
+          <p>Fill or copy and paste from the list below the block height and the namespace ID and click to get the message shares.</p>
           <p>See <a href="https://docs.celestia.org/developers/node-tutorial/#get-namespaced-shares-by-block-height" target="_blank" rel="nopener noreferrer">Celestia Docs</a></p>
         </div>
       </div>
@@ -31,7 +31,7 @@
               <div ref="loading" class="loading">Loading</div>
               <div ref="errorMessage" class="error-message">{{ errorMessage }}</div>
               <div ref="responseMessage" class="response-message">{{ responseMessage }}</div>
-              <button ref="checkButton" @click="getShares" type="submit">Submit</button>
+              <button ref="checkButton" @click="getShares" type="submit" :disabled="isLoading">Submit</button>
             </div>
           </div>
         </form>
@@ -39,4 +39,7 @@
     </div>
   </div>
 </section>
+
+<Pfbs />
+
   

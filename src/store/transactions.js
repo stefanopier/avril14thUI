@@ -16,34 +16,40 @@ export const useTransactionsStore = defineStore('transactions', {
   },
 
   actions: {
-    addTransaction(tr) {
+    addTransaction(namespaceId, tr) {
       if(this.transactions) {
-        const found = this.transactions.findIndex(el => el.txHash === tr.txHash)
-        if(found>=0) {
-          this.transactions[found] = tr;
+        let o = { ...tr, namespaceId: namespaceId }
+        const found = this.transactions.findIndex(el => el.txhash === tr.txhash)
+        if (found>=0) {
+          Object.assign(this.transactions[found], o)
         } else {
-          this.transactions.push(tr);
+          this.transactions.push(o)
         }
       }
     },
     removeTransaction(index) {
         this.transactions.splice(index, 1)
     },
-    addNamespaceId(txHash, namespaceId) {
+    addShares(namespaceId, height, shares) {
+      if (this.transactions) {
+        const found = this.transactions.findIndex(el => el.namespaceId === namespaceId && el.height === height)
+        if (found>=0) {
+          this.transactions[found].shares = shares
+        }
+      } else {
+        this.transactions.push({ namespaceId: namespaceId, height: height, shares: shares })
+      }
+    },
+    addTransactionScan(tr) {
       if(this.transactions) {
-        const found = this.transactions.findIndex(el => el.txHash === txHash)
-        if(found>=0) {
-          this.transactions[found].namespaceId = namespaceId;
+        let o = { ...tr, namespaceId: namespaceId }
+        const found = this.transactions.findIndex(el => el.txhash === tr.txhash)
+        if (found>=0) {
+          Object.assign(this.transactions[found], o)
+        } else {
+          this.transactions.push(o)
         }
       }
     },
-    addShares(namespaceId, shares) {
-      if(this.transactions) {
-        const found = this.transactions.findIndex(el => el.namespaceId === namespaceId)
-        if(found>=0) {
-          this.transactions[found].shares = shares;
-        }
-      }
-    }
   }
-})
+});

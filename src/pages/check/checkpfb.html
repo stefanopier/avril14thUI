@@ -5,7 +5,7 @@
       <div class="col-lg-6 d-flex align-items-center" >
         <div class="content">
           <h3>Check a transaction</h3>
-          <p>Check the transaction using <a href="https://hub.mintscan.io/chains/overview" target="_blank" rel="nopener noreferrer">Mintscan</a></p>
+          <p>Fill or copy and paste from the list below the transaction's hash value and click to check it on hub.mintscan.io</p>
         </div>
       </div>
 
@@ -19,7 +19,8 @@
               <div ref="loading" class="loading">Loading</div>
               <div ref="errorMessage" class="error-message">{{ errorMessage }}</div>
               <div ref="responseMessage" class="response-message">{{ responseMessage }}</div>
-              <button ref="checkButton" @click="checkTransaction" type="submit">Check</button>
+              <!--<button ref="checkButton" @click="checkTransaction" type="submit">Check</button>-->
+              <button ref="checkButton" @click="checkTransaction" type="submit">Go and check on Mintscan Hub</button>
             </div>
           </div>
         </form>

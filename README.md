@@ -26,4 +26,4 @@ npm run preview
 ```
 
 ### TODOS
-Deploy an API proxy server to avoid CORS origin errors
+Add KPLR wallet integration for demonstration purposes
